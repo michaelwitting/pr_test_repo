@@ -19,7 +19,7 @@ jobs:
       run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
 
     - name: preprocess
-      run: for ds in ${{ steps.filesfolders.outputs.files }}; do touch processed_data/$ds/test.txt; done
+      run: for ds in ${{ steps.filesfolders.outputs.files }}; do mkdir -p processed_data/$ds; touch processed_data/$ds/test.txt; done
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
