@@ -2,10 +2,13 @@ name: preprocess
 
 on:
   pull_request_target:
+        types: [labeled]
 
 jobs:
   preprocess:
+    name: Preprocess raw data
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'accepted for preprocessing')
 
     steps:
     - uses: actions/checkout@v2
@@ -30,3 +33,27 @@ jobs:
         git add processed_data
         git commit -m "Preprocessing ${{ steps.filesfolders.outputs.files }}"
         git push origin HEAD
+
+    - name: label as successfully preprocessed
+      if: ${{ success() }}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          github.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['preprocessing successful']
+              })
+
+    - name: label failed
+      if: ${{ failure() }}
+      uses: actions/github-script@v3
+      with:
+        script: |
+          github.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['preprocessing failed']
+              })
