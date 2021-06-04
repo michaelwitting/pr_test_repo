@@ -1,7 +1,6 @@
 name: preprocess
 
-on:
-  pull_request_target:
+on: [push, pull_request, pull_request_target]
 
 jobs:
   preprocess:
@@ -9,13 +8,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: preprocess
-      run: mkdir -p processed_data/0011; touch processed_data/0011/test.txt
+      run: mkdir -p processed_data/0012; touch processed_data/0012/test.txt
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Preprocessing
-        branch: ${{ github.event.pull_request.head.sha }}
+        commit_message: Preprocessing 0012
