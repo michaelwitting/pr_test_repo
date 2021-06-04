@@ -1,0 +1,21 @@
+name: label for review
+
+on:
+  pull_request_target:
+        types: [opened]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    # TODO: could check whether basic requirements are met, e.g., new files add (only) to the raw_data folder
+    steps:
+      - name: label
+        uses: actions/github-script@v3
+        with:
+          script: |
+            github.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: ['review for preprocessing']
+            })
