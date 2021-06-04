@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: preprocess
-      run: mkdir -p processed_data/0010; touch processed_data/0010/test.txt; done
+      run: mkdir -p processed_data/0010; touch processed_data/0010/test.txt
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
