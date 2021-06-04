@@ -1,6 +1,6 @@
 name: preprocess
 
-on: [push, pull_request, pull_request_target]
+on: [pull_request, pull_request_target]
 
 jobs:
   preprocess:
@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: preprocess
-      run: mkdir -p processed_data/0012; touch processed_data/0012/test.txt
+      run: mkdir -p processed_data/0013; touch processed_data/0013/test.txt
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: Preprocessing 0012
+        commit_message: Preprocessing 0013
