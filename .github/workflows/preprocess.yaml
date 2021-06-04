@@ -21,3 +21,4 @@ jobs:
         git config --global user.name 'Github Actions'
         git add processed_data
         git commit -m 'Preprocessing 0016'
+        git push origin ${branch input} --set-upstream
