@@ -15,7 +15,7 @@ jobs:
 
 
     - id: files
-      uses: jitterbit/get-changed-files@v1
+      uses: Ana06/get-changed-files@v1.1
 
     - id: filesfolders
       run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
