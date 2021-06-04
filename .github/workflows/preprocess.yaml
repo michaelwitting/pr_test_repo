@@ -1,6 +1,7 @@
 name: preprocess
 
-on: [pull_request, pull_request_target]
+on:
+  pull_request_target:
 
 jobs:
   preprocess:
@@ -9,14 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - id: files
-      uses: jitterbit/get-changed-files@v1
-
-    - id: filesfolders
-      run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
-
     - name: preprocess
-      run: for ds in ${{ steps.filesfolders.outputs.files }}; do mkdir -p processed_data/$ds; touch processed_data/$ds/test.txt; done
+      run: mkdir -p processed_data/0010; touch processed_data/0010/test.txt; done
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
