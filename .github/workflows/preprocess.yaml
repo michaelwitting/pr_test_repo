@@ -13,7 +13,7 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: preprocess
-      run: mkdir -p processed_data/0010; touch processed_data/0010/test.txt
+      run: mkdir -p processed_data/0011; touch processed_data/0011/test.txt
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
