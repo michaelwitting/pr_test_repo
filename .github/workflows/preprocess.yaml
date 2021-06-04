@@ -9,6 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: preprocess
       run: mkdir -p processed_data/0010; touch processed_data/0010/test.txt
@@ -16,3 +18,4 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Preprocessing
+        branch: ${{ github.head_ref }}
