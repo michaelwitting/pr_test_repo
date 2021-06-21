@@ -7,6 +7,10 @@ with open(sys.argv[1]) as inhandle, open(sys.argv[1] + '_standardized', 'w') as 
         id_, smiles = line.split('\t')
         try:
             c = pubchempy.get_compounds(smiles, 'smiles')[0]
-            success_handle.write('\t'.join([id_, c.isomeric_smiles]) + '\n')
+            succ_out = '\t'.join([id_, c.isomeric_smiles]) + '\n'
+            print('succ_out: ' + succ_out, end='')
+            success_handle.write(succ_out)
         except Exception as e:
-            fail_handle.write('\t'.join([id_, smiles, str(e)]) + '\n')
+            fail_out = '\t'.join([id_, smiles, str(e)]) + '\n'
+            print('fail_out: ' + fail_out, end='')
+            fail_handle.write(fail_out)
