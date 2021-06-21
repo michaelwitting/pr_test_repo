@@ -66,10 +66,9 @@ for(data_folder in data_folders) {
     select(id, pubchem.smiles.canonical) %>%
     write_tsv("temp.txt", col_names = FALSE)
 
-    print("Starting java script")
   # perform standardization ----------------------------------------------------
-    system("java -jar scripts/Java/structure-standardization.jar temp.txt")
-    print("java script done")
+    ## system("java -jar scripts/Java/structure-standardization.jar temp.txt")
+    system("python3 scripts/Python/standardize.py temp.txt")
 
   # read standarized smiles ----------------------------------------------------
   smiles_canonical_std <- read_tsv("temp.txt_standardized", col_names = FALSE)
@@ -141,7 +140,7 @@ for(data_folder in data_folders) {
     write_tsv("temp.txt", col_names = FALSE)
 
   # perform standardization ----------------------------------------------------
-  system("java -jar scripts/Java/structure-standardization.jar temp.txt")
+  system("python3 scripts/Python/standardize.py temp.txt")
 
   # read standarized smiles ----------------------------------------------------
   smiles_isomeric_std <- read_tsv("temp.txt_standardized", col_names = FALSE)
