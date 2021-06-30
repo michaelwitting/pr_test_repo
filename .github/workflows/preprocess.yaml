@@ -7,7 +7,7 @@ on:
 jobs:
   preprocess:
     name: Preprocess raw data
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: contains(github.event.pull_request.labels.*.name, 'accepted for preprocessing')
 
     steps:
@@ -24,20 +24,21 @@ jobs:
 
     - name: Get new/changed datasets
       id: filesfolders
+      shell: bash {0}
       run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
 
     - name: pyton dependencies
-      run: pip3 install pubchempy
+      run: pip install pubchempy
 
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
     #   with:
     #     r-version: '3.5.3'
 
-    - name: R (package) dependencies
-      run: |
-        sudo apt-get install libcurl4-openssl-dev libgit2-dev
-        sudo R CMD javareconf
+    # - name: R (package) dependencies
+    #   run: |
+    #     sudo apt-get install libcurl4-openssl-dev libgit2-dev
+    #     sudo R CMD javareconf
 
     - name: Restore R package cache
       uses: actions/cache@v2
