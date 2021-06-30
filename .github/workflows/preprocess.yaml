@@ -47,11 +47,13 @@ jobs:
         key: rdeps-${{ hashFiles('scripts/R/dependencies.R') }}
         restore-keys: rdeps-
 
+    - run: echo ("JAVA_HOME=" + $Env:JAVA_HOME_13_X64) >> $env:GITHUB_ENV
+ 
     - name: Ensure Java version
       run: |
         java -version
         $Env:JAVA_HOME
-        $Env:JAVA_HOME_13_X64        
+        $Env:JAVA_HOME_13_X64
 
     - shell: Rscript {0}
       run: |
