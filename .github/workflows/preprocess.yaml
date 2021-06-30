@@ -47,6 +47,15 @@ jobs:
         key: rdeps-${{ hashFiles('scripts/R/dependencies.R') }}
         restore-keys: rdeps-
 
+    - name: Ensure Java version
+      run: |
+        java -version
+
+    - shell: Rscript {0}
+      run: |
+        install.packages("rJava")
+        library(rJava).jinit().jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
+
     - name: Install R packages
       run: Rscript scripts/R/dependencies.R
 
