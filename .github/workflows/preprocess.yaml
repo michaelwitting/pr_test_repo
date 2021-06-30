@@ -63,6 +63,7 @@ jobs:
         .jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
         install.packages("usethis")
         install.packages("devtools")
+        options(devtools.install.args = "--no-multiarch")
         devtools::install_github("https://github.com/CDK-R/rinchi")
 
     - name: Install R packages

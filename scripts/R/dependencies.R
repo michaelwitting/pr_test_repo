@@ -1,5 +1,6 @@
 install.packages("usethis")
 install.packages("devtools")
+options(devtools.install.args = "--no-multiarch")
 devtools::install_github("https://github.com/aberHRML/classyfireR")
 install.packages("gridExtra")
 install.packages("rcdk")
