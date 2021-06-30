@@ -54,7 +54,9 @@ jobs:
     - shell: Rscript {0}
       run: |
         install.packages("rJava")
-        library(rJava).jinit().jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
+        library(rJava)
+        .jinit()
+        .jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
 
     - name: Install R packages
       run: Rscript scripts/R/dependencies.R
