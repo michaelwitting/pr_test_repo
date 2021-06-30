@@ -43,7 +43,8 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.R_LIBS_USER }}
-        key: ${{ hashFiles('scripts/R/dependencies.R') }}
+        key: rdeps-${{ hashFiles('scripts/R/dependencies.R') }}
+        restore-keys: rdeps-
 
     - name: Install R packages
       run: Rscript scripts/R/dependencies.R
