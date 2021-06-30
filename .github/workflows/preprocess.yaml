@@ -73,24 +73,31 @@ jobs:
         .jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
 
     - name: Install R packages
+      shell: cmd {0}
       run: Rscript scripts/R/dependencies.R
 
     - name: Standardize compounds
+      shell: cmd {0}
       run: Rscript scripts/R/compounds_standardize.R ${{ steps.filesfolders.outputs.files }}
 
     - name: Compounds classyfire classes
+      shell: cmd {0}
       run: Rscript scripts/R/compounds_classyfire.R ${{ steps.filesfolders.outputs.files }}
 
     - name: Compounds descriptors
+      shell: cmd {0}
       run: Rscript scripts/R/compounds_descriptors.R ${{ steps.filesfolders.outputs.files }}
 
     - name: Metadata standardization
+      shell: cmd {0}
       run: Rscript scripts/R/metadata_standardize.R ${{ steps.filesfolders.outputs.files }}
 
     - name: Compounds overview
+      shell: cmd {0}
       run: Rscript scripts/R/compounds_overview.R
 
     - name: Metadata overview
+      shell: cmd {0}
       run: Rscript scripts/R/metadata_overview.R
 
     - name: Commit preprocessing
