@@ -47,24 +47,8 @@ jobs:
         key: rdeps-1-${{ hashFiles('scripts/R/dependencies.R') }}
         restore-keys: rdeps-1-
 
-    - run: echo ("JAVA_HOME=" + $Env:JAVA_HOME_13_X64) >> $env:GITHUB_ENV
-
-    - name: Ensure Java version
-      run: |
-        java -version
-        $Env:JAVA_HOME
-        $Env:JAVA_HOME_13_X64
-
-    - shell: Rscript {0}
-      run: |
-        install.packages("rJava")
-        library(rJava)
-        .jinit()
-        .jcall("java/lang/System", "S", "getProperty", "java.runtime.version")
-        install.packages("usethis")
-        install.packages("devtools")
-        options(devtools.install.args = "--no-multiarch")
-        devtools::install_github("https://github.com/CDK-R/rinchi")
+    - name: Set java version
+      run: echo ("JAVA_HOME=" + $Env:JAVA_HOME_13_X64) >> $env:GITHUB_ENV
 
     - name: Install R packages
       run: Rscript scripts/R/dependencies.R
