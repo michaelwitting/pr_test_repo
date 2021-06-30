@@ -40,6 +40,16 @@ jobs:
     #     sudo apt-get install libcurl4-openssl-dev libgit2-dev
     #     sudo R CMD javareconf
 
+    - run: Rscript --version
+
+    - shell: cmd {0}
+        run: Rscript --version
+
+    - run: R --version
+
+    - shell: cmd {0}
+        run: R --version
+
     - name: Restore R package cache
       uses: actions/cache@v2
       with:
@@ -48,7 +58,7 @@ jobs:
         restore-keys: rdeps-
 
     - run: echo ("JAVA_HOME=" + $Env:JAVA_HOME_13_X64) >> $env:GITHUB_ENV
- 
+
     - name: Ensure Java version
       run: |
         java -version
