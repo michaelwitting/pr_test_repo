@@ -50,6 +50,8 @@ jobs:
     - name: Ensure Java version
       run: |
         java -version
+        $Env:JAVA_HOME
+        $Env:JAVA_HOME_13_X64        
 
     - shell: Rscript {0}
       run: |
