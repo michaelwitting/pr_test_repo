@@ -27,20 +27,13 @@ jobs:
       shell: bash {0}
       run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
 
-    - name: pyton dependencies
+    - name: Pyton dependencies
       run: pip install pubchempy
 
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
-    #   with:
-    #     r-version: '3.5.3'
 
-    # - name: R (package) dependencies
-    #   run: |
-    #     sudo apt-get install libcurl4-openssl-dev libgit2-dev
-    #     sudo R CMD javareconf
-
-    - name: Restore R package cache
+    - name: Use cached R packages if possible
       uses: actions/cache@v2
       with:
         path: ${{ env.R_LIBS_USER }}
