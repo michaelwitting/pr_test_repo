@@ -25,6 +25,8 @@
 # ==============================================================================
 library(tidyverse)
 library(rcdk)
+## get smiles parser
+sp <- get.smiles.parser()
 
 # ==============================================================================
 # read the data and create tibble for data analysis
