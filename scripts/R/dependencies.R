@@ -1,9 +1,5 @@
-install.packages("usethis")
-install.packages("devtools")
+install.packages(c("usethis", "devtools", "gridExtra", "rcdk", "tidyverse", "viridis"),
+                 INSTALL_opts=c('--no-multiarch'))
 options(devtools.install.args = "--no-multiarch")
 devtools::install_github("https://github.com/aberHRML/classyfireR")
-install.packages("gridExtra")
-install.packages("rcdk")
 devtools::install_github("https://github.com/CDK-R/rinchi")
-install.packages("tidyverse")
-install.packages("viridis")
