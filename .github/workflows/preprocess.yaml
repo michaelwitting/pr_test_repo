@@ -39,17 +39,14 @@ jobs:
         sudo apt-get install libcurl4-openssl-dev libgit2-dev
         sudo R CMD javareconf
 
+    - name: Restore R package cache
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.R_LIBS_USER }}
+        key: ${{ hashFiles('scripts/R/dependencies.R') }}
+
     - name: Install R packages
-      shell: Rscript {0}
-      run: |
-        install.packages("usethis")
-        install.packages("devtools")
-        devtools::install_github("https://github.com/aberHRML/classyfireR")
-        install.packages("gridExtra")
-        install.packages("rcdk")
-        devtools::install_github("https://github.com/CDK-R/rinchi")
-        install.packages("tidyverse")
-        install.packages("viridis")
+      run: Rscript scripts/R/dependencies.R
 
     - name: Standardize compounds
       run: Rscript scripts/R/compounds_standardize.R ${{ steps.filesfolders.outputs.files }}
