@@ -1,0 +1,8 @@
+install.packages("usethis")
+install.packages("devtools")
+devtools::install_github("https://github.com/aberHRML/classyfireR")
+install.packages("gridExtra")
+install.packages("rcdk")
+devtools::install_github("https://github.com/CDK-R/rinchi")
+install.packages("tidyverse")
+install.packages("viridis")
