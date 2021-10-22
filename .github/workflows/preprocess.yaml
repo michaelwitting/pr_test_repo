@@ -8,6 +8,8 @@ jobs:
   preprocess:
     name: Preprocess raw data
     runs-on: windows-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     if: contains(github.event.pull_request.labels.*.name, 'accepted for preprocessing')
 
     steps:
