@@ -26,7 +26,7 @@ jobs:
     - name: Get new/changed datasets
       id: filesfolders
       shell: bash {0}
-      run: echo "::set-output name=files::{$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)}"
+      run: echo "::set-output name=files::$(for f in ${{ steps.files.outputs.all }}; do basename $(dirname $f); done | sort | uniq)"
 
     - name: Pyton dependencies
       run: pip install pubchempy
@@ -48,16 +48,16 @@ jobs:
       run: Rscript scripts/R/dependencies.R
 
     - name: Standardize compounds
-      run: Rscript scripts/R/compounds_standardize.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_standardize.R ${{ steps.filesfolders.outputs.files.all }}
 
     - name: Compounds classyfire classes
-      run: Rscript scripts/R/compounds_classyfire.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_classyfire.R ${{ steps.filesfolders.outputs.files.all }}
 
     - name: Compounds descriptors
-      run: Rscript scripts/R/compounds_descriptors.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_descriptors.R ${{ steps.filesfolders.outputs.files.all }}
 
     - name: Metadata standardization
-      run: Rscript scripts/R/metadata_standardize.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/metadata_standardize.R ${{ steps.filesfolders.outputs.files.all }}
 
     - name: Compounds overview
       run: Rscript scripts/R/compounds_overview.R
