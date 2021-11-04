@@ -48,16 +48,16 @@ jobs:
       run: Rscript scripts/R/dependencies.R
 
     - name: Standardize compounds
-      run: Rscript scripts/R/compounds_standardize.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_standardize.R "${{ steps.filesfolders.outputs.files }}"
 
     - name: Compounds classyfire classes
-      run: Rscript scripts/R/compounds_classyfire.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_classyfire.R "${{ steps.filesfolders.outputs.files }}"
 
     - name: Compounds descriptors
-      run: Rscript scripts/R/compounds_descriptors.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/compounds_descriptors.R "${{ steps.filesfolders.outputs.files }}"
 
     - name: Metadata standardization
-      run: Rscript scripts/R/metadata_standardize.R ${{ steps.filesfolders.outputs.files }}
+      run: Rscript scripts/R/metadata_standardize.R "${{ steps.filesfolders.outputs.files }}"
 
     - name: Compounds overview
       run: Rscript scripts/R/compounds_overview.R
