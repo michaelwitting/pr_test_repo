@@ -2,7 +2,7 @@ name: Preprocessing
 
 on:
   pull_request_target:
-        types: [ synchronize, reopened, labeled ]
+        types: [ opened, synchronize, reopened ]
 
 jobs:
   preprocess:
